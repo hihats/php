@@ -24,18 +24,18 @@ if(version_compare(phpversion(), "5.2.0", '<')){
 		if (is_bool($val)) return $val?'true':'false';
 		if (is_array($val)) {
 			$len = count($val);
-			for($ii=0; $ii<$len && isset($val[$ii]); ++$ii) {}
+			for($i=0; $i<$len && isset($val[$i]); ++$i) {}
 			$temp = array();
-			if($len==$ii) {
-			for($i=0;$i<$len;$i++) {
-			$temp[] = sprintf("%s", json_encode($val[$i]));
-			}
-			return '['. implode(",",$temp) .']';
+			if($len==$i) {
+				for($j=0;$j<$len;$j++) {
+					$temp[] = sprintf("%s", json_encode($val[$j]));
+				}
+				return '['. implode(",",$temp) .']';
 			} else {
-			foreach($val as $key => $item) {
-			$temp[] = sprintf("%s:%s", json_encode($key), json_encode($item));
-			}
-			return '{'. implode(",", $temp) .'}';
+				foreach($val as $key => $item) {
+					$temp[] = sprintf("%s:%s", json_encode($key), json_encode($item));
+				}
+				return '{'. implode(",", $temp) .'}';
 			}
  		}
 		// else string
