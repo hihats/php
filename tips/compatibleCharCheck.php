@@ -18,7 +18,9 @@ function mismatchByEncoding($string, $from_encoding='UTF-8', $to_encoding='SJIS'
         return FALSE;
     }
     // 半角カナcheck
-    if (preg_match('/^[ｦ-ﾟｰ ]+$/u', $string)){
+    $regexp = '[ｦ-ﾟｰ ]';    // 半角カナ文字のみ
+    //$regexp = '[｡-ﾟｰ ]';    // 半角句読点鍵括弧も含む
+    if (preg_match("/$regexp+/u", $string)){
         return FALSE;
     }
     return TRUE;
